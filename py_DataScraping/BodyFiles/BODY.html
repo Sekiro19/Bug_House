@@ -1,0 +1,12 @@
+<p>try setting the <code>format</code> to a blank space Value.</p>
+
+<pre><code>DateTimePicker1.Format:=' ';
+</code></pre>
+
+<p>and then in the <code>OnChange</code> method set the format again</p>
+
+<pre><code>procedure TForm1.DateTimePicker1Change(Sender: TObject);
+begin
+DateTimePicker1.Format:=ShortDateFormat;
+end;
+</code></pre>

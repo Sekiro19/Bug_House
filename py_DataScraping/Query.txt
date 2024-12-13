@@ -1,0 +1,16 @@
+---------------------------------------------------
+SELECT TOP 20000  TB_Q.Id AS Q_Id,
+                  TB_Q.PostTypeId AS Q_PostTypeId,
+                  TB_Q.Title AS Q_Title,
+                  TB_Q.Body AS Q_Body,
+                  TB_Q.Tags AS Q_Tags,
+                  TB_A.Id AS A_Id,
+                  TB_A.PostTypeId AS A_PostTypeId,
+                  TB_A.ParentId AS A_ParentId,
+                  TB_A.Body AS A_Body
+FROM 
+(SELECT Q.* FROM Posts AS Q WHERE Q.PostTypeId = 1 AND Q.Tags LIKE '%sql-server%') AS TB_Q
+JOIN
+(SELECT A.* FROM Posts AS A WHERE A.PostTypeId = 2) AS TB_A
+ON TB_Q.AcceptedAnswerId = TB_A.Id
+ORDER BY TB_Q.ViewCount DESC
